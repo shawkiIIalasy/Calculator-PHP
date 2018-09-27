@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ImmaComma Task</title>
+	<link href="css/style.css" rel="stylesheet">
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/app.js"></script>
+	<script type="text/javascript">
+		$(function(){
+				var data='';
+                $("#name-submit").click(function(){
+                    var display = $("#display").val();
+                  	var x = $("#x").val();
+                  	var y = $("#y").val();
+                  	var z = $("#z").val();
+                  	var dataString = '&equation='+display+'&X='+x+'&Y='+y+'&Z='+z;
+                  		$.ajax({
+						    type: "GET",
+						    url: 'calculator.php',
+						   data:dataString,
+						    success: function(data){
+						        $("#name-data").val(data);
+						    }
+						});   
+                });
+            });
+		
+	</script>
+</head>
+<body>
+	<!--header start-->
+	<header>
+		<h1><center>ImmaComma Task</center></h1>
+	</header>
+	<!--header end-->
+
+
+	<form name="cal" method="get" action="calculator.php">
+		<div class="buttons">
+		<input type="button" value="0" onclick="addNumber(0)">
+ 		<input type="button" value="1" onclick="addNumber(1)">
+		<input type="button" value="2" onclick="addNumber(2)">
+		<input type="button" value="3" onclick="addNumber(3)">
+		<input type="button" value="4" onclick="addNumber(4)">
+		<input type="button" value="5" onclick="addNumber(5)">
+		<input type="button" value="6" onclick="addNumber(6)">
+		<input type="button" value="7" onclick="addNumber(7)">
+		<input type="button" value="8" onclick="addNumber(8)">
+		<input type="button" value="9" onclick="addNumber(9)">
+		</div>
+	<div class="buttons">
+		<input type="button" value="+" onclick="addO('+')">
+		<input type="button" value="-" onclick="addO('-')">
+		<input type="button" value="/" onclick="addO('/')">
+		<input type="button" value="*" onclick="addO('*')">
+		<input type="button" value="X" onclick="addVar('X')">
+		<input type="button" value="Y" onclick="addVar('Y')">
+		<input type="button" value="Z" onclick="addVar('Z')">
+		<input type="button" value="Delete" id="delete" onclick="delete1('')">
+		<input type="button" value="Clear" id="clear" onclick="clear1('')">
+	</div>
+
+
+<br><br><br>
+<!--the equaton field-->
+<div class="equation">
+	<h3>The equation :</h3>
+		<input type="text" class="text" id="equation-data" name="display" readonly></input>
+</div>
+</form>
+
+
+<!-- the Variables  -->
+<div class="variable">
+	<h3>The Variables: </h3>
+		<form name="cal1" action="calculator.php" method="get">
+		<fieldset>
+			<input type="text" name="display" id="display" hidden>
+			<input type="number" name="x" id="x" placeholder="Enter X Value">
+			<input type="number" name="y" id="y" placeholder="Enter Y Value">
+			<input type="number" name="z" id="z" placeholder="Enter Z Value">
+		</fieldset>
+		<input class="button" type="button" name ="submit" id="name-submit"  value="="  >
+		</form>
+</div>
+
+<!--the result field-->
+<div class="ans" >
+<h3>The Result =</h3>
+<input class="res" type="text"   id="name-data" name="display" readonly>
+
+</div>
+<div id="agh">
+            <p>Shawki Alasy Calculator
+          </div>
+</body>
+</html>
